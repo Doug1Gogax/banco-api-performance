@@ -20,6 +20,7 @@ export const options = {
 export default function () {
   //teste!
   const url = "http://localhost:3000/login";
+  
 
   console.log(postLogin);
 
@@ -31,6 +32,7 @@ export default function () {
     },
   };
 
+  
   const res = http.post(url, payload, params);
 
   check(res, {
