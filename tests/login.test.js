@@ -1,17 +1,17 @@
 import http from "k6/http";
 import { sleep, check } from "k6";
-import { pegarBaseURL } from "../utils/variaveis";
+import { pegarBaseURL } from '../utils/variaveis.js';
+
 const postLogin = JSON.parse(open('../fixtures/postLogin.json'));
 
 export const options = {
-  /*
+   
   stages:[
-    {duration:'5s',target:10},
-    {duration:'20s',target:10},
-    {duration:'5s',target:0},
-  ],
-  */
-  iterations: 1,
+    {duration:'1m',target:10},
+    {duration:'1m',target:10},
+    {duration:'1m',target:0},
+  ],  
+ 
   thresholds: {
     http_req_duration: ["p(90)<3000", "max<5000"],
     http_req_failed: ["rate < 0.01"],
@@ -19,11 +19,7 @@ export const options = {
 };
 
 export default function () {
-  //teste!
   const url = pegarBaseURL() + '/login';
-  
-
-  
 
   const payload = JSON.stringify(postLogin);
 
@@ -33,7 +29,6 @@ export default function () {
     },
   };
 
-  
   const res = http.post(url, payload, params);
 
   check(res, {

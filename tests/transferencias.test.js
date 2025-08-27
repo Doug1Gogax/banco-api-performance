@@ -4,8 +4,9 @@ import { obterToken } from '../helpers/autenticacao.js';
 import { pegarBaseURL } from '../utils/variaveis.js';
 
 export const options = {
-    iterations: 1
-};
+    vus:6,
+    duration:'1m',
+    };
 
 export default function() {
     const token = obterToken();
@@ -25,14 +26,11 @@ export default function() {
         }
     };
 
-    let res = http.post(url, payload, params);
-
-    
+    let res = http.post(url, payload, params);    
 
     check(res, {
         "status is 201": (res) => res.status === 201
-    });
-        console.log("Status recebido:", res.status, "Body:", res.body);
+    });        
 
     sleep(1);
 }
